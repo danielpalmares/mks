@@ -1,11 +1,7 @@
-import './App.css';
+import { ApplicationRoutes } from './ui/routes';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
-  );
+  return <ApplicationRoutes />;
 }
 
 export default App;
