@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IParams } from '../../../data/utils/params';
 import { ApplicationState } from '../../../store';
 import { setProductsSaga } from '../../../store/products/actions';
-import { Header } from '../../components/Header';
+import { Skeleton } from '../../components/Skeleton';
 import { Template } from '../../components/Template';
 import { toLocalePrice } from '../../utils/functions';
 import {
@@ -22,6 +22,7 @@ import {
 export function Home() {
   const products = useSelector((state: ApplicationState) => state.products);
   const dispatch = useDispatch();
+  const skeletonCount = 8;
 
   useEffect(() => {
     const params: IParams = {
@@ -34,13 +35,14 @@ export function Home() {
     dispatch(setProductsSaga(params));
   }, []);
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
-
   return (
     <Template>
       <Main>
+        {products.loading &&
+          Array.from({ length: skeletonCount }, (_, i) => {
+            return <Skeleton key={i} />;
+          })}
+
         {products.data.map(product => {
           return (
             <ProductCard>
