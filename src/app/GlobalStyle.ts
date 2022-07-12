@@ -9,9 +9,12 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
-    font-family: 'Montserrat', sans-serif;
+  html {
     font-size: 62.5%;
+  }
+
+  body, button {
+    font-family: 'Montserrat', sans-serif; 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
