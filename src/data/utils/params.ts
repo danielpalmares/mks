@@ -1,5 +1,5 @@
-type OrderBy = 'id' | 'name' | 'price';
-type SortBy = 'DESC' | 'ASC';
+type OrderBy = 'DESC' | 'ASC';
+type SortBy = 'id' | 'name' | 'price';
 
 export interface IParams {
   page: number;

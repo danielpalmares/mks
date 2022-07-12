@@ -12,7 +12,7 @@ class Http {
         'Content-Type': 'application/json',
         'Key-Inflection': 'camel',
       },
-      baseURL: import.meta.env.BASE_URL,
+      baseURL: import.meta.env.VITE_BASE_URL,
     });
 
     return this.instance;

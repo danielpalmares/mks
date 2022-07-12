@@ -19,7 +19,7 @@ export function* setProducts(action: SetProductsSagaAction) {
     if (error instanceof AxiosError) {
       yield put(
         actions.setRequestFailure(
-          error.response ? error.response.data.error : error.message
+          error.response ? error.response.data.message : error.message
         )
       );
     } else {
