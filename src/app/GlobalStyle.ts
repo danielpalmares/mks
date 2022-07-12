@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import * as variables from '../ui/styles/variables';
 
 export const GlobalStyle = createGlobalStyle`
   *::before, 
@@ -11,6 +12,10 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 62.5%;
+  }
+
+  body { 
+    background-color: ${variables.WHITE_LIGHT};
   }
 
   body, button {
