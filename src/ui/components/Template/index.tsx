@@ -1,3 +1,4 @@
+import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { Wrapper } from './styles';
 
@@ -10,6 +11,7 @@ export function Template({ children }: Props) {
     <>
       <Header />
       <Wrapper>{children}</Wrapper>
+      <Footer />
     </>
   );
 }

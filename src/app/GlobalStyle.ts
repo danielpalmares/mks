@@ -16,6 +16,8 @@ export const GlobalStyle = createGlobalStyle`
 
   body { 
     background-color: ${variables.WHITE_LIGHT};
+    min-height: 100vh;
+    position: relative;
   }
 
   body, button {
