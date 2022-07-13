@@ -1,15 +1,15 @@
 import { toLocalePrice } from '../../utils/functions';
 import { CloseButton } from '../CloseButton';
+import { PriceBadge } from '../PriceBadge';
 import {
   CardContainer,
-  PriceText,
-  QuantityButton,
+  ImageNameContainer,
   QuantityContainer,
+  QuantityPriceContainer,
 } from './styles';
 
 interface Props {
-  id: number;
-  removeHandler: (id: number) => void;
+  removeHandler: () => void;
   name: string;
   description: string;
   quantity: number;
@@ -19,7 +19,6 @@ interface Props {
 }
 
 export function CartProductCard({
-  id,
   removeHandler,
   name,
   description,
@@ -31,27 +30,31 @@ export function CartProductCard({
   return (
     <CardContainer>
       <CloseButton
-        handler={() => removeHandler(id)}
+        handler={() => removeHandler()}
         width={3}
         height={3}
         padding={0.5}
-        top="-.5rem"
-        right="-.5rem"
+        top="-1rem"
+        right="-1rem"
       />
-      <img src={photo} alt={description} />
-      <span>{name}</span>
-      <QuantityContainer>
-        <QuantityButton
-          onClick={() => setQuantity(quantity - 1 ? quantity - 1 : quantity)}
-        >
-          -
-        </QuantityButton>
-        <span>{quantity}</span>
-        <QuantityButton onClick={() => setQuantity(quantity + 1)}>
-          +
-        </QuantityButton>
-      </QuantityContainer>
-      <PriceText>{toLocalePrice(price)}</PriceText>
+
+      <ImageNameContainer>
+        <img src={photo} alt={description} />
+        <span>{name}</span>
+      </ImageNameContainer>
+
+      <QuantityPriceContainer>
+        <QuantityContainer>
+          <button
+            onClick={() => setQuantity(quantity - 1 ? quantity - 1 : quantity)}
+          >
+            -
+          </button>
+          <span>{quantity}</span>
+          <button onClick={() => setQuantity(quantity + 1)}>+</button>
+        </QuantityContainer>
+        <PriceBadge>{toLocalePrice(price)}</PriceBadge>
+      </QuantityPriceContainer>
     </CardContainer>
   );
 }

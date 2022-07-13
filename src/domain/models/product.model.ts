@@ -10,3 +10,7 @@ export class Product {
     Object.assign(this, props);
   }
 }
+
+export interface CartProduct extends Product {
+  quantity: number;
+}

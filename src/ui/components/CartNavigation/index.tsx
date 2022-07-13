@@ -1,5 +1,5 @@
 import { IoCloseOutline } from 'react-icons/io5';
-import { Product } from '../../../domain/models/product.model';
+import { CartProduct, Product } from '../../../domain/models/product.model';
 import { CartProductCard } from '../CartProductCard';
 import {
   Backdrop,
@@ -7,42 +7,64 @@ import {
   FinishButton,
   Navigation,
   NavigationHeading,
+  ProductsContainer,
 } from './styles';
 
-export function CartNavigation() {
+interface Props {
+  cart: CartProduct[];
+  setCheckCart: (value: boolean) => void;
+  showCartNavigation: boolean;
+  setShowCartNavigation: (value: boolean) => void;
+}
+
+export function CartNavigation({
+  cart,
+  setCheckCart,
+  showCartNavigation,
+  setShowCartNavigation,
+}: Props) {
   const removeFromCartHandler = function (productId: number) {
     const cachedProductsJson = localStorage.getItem('@cart');
     if (!cachedProductsJson) return;
 
-    const cachedProducts: Product[] = JSON.parse(cachedProductsJson);
+    const cachedProducts: CartProduct[] = JSON.parse(cachedProductsJson);
     const newCachedProducts = cachedProducts.filter(
       cartProduct => productId !== cartProduct.id
     );
-    return localStorage.setItem('@cart', JSON.stringify(newCachedProducts));
+    localStorage.setItem('@cart', JSON.stringify(newCachedProducts));
+    return setCheckCart(true);
   };
 
   return (
-    <Backdrop>
-      <Navigation isVisible={true}>
+    <Backdrop isVisible={showCartNavigation}>
+      <Navigation isVisible={showCartNavigation}>
         <NavigationHeading>
           Carrinho <br /> de compras
         </NavigationHeading>
-        <CloseButton>
+        <CloseButton onClick={() => setShowCartNavigation(false)}>
           <IoCloseOutline size={20} />
         </CloseButton>
 
-        <CartProductCard
-          id={2}
-          name="Apple iPhone 13"
-          description="The best phone"
-          price="5000"
-          quantity={4}
-          removeHandler={id => removeFromCartHandler(id)}
-          setQuantity={() => 10}
-          photo="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-family-hero?wid=940&hei=1112&fmt=png-alpha&.v=1644969385433"
-        ></CartProductCard>
+        <ProductsContainer>
+          {cart.map(product => {
+            return (
+              <CartProductCard
+                key={product.id}
+                removeHandler={() => removeFromCartHandler(product.id)}
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                quantity={product.quantity}
+                setQuantity={() => 10}
+                photo={product.photo}
+              />
+            );
+          })}
+        </ProductsContainer>
 
-        <FinishButton>Finalizar compra</FinishButton>
+        <FinishButton onClick={() => setShowCartNavigation(false)}>
+          Finalizar compra
+        </FinishButton>
       </Navigation>
     </Backdrop>
   );

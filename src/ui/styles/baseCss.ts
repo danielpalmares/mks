@@ -4,7 +4,14 @@ import * as variables from '../styles/variables';
 export const baseButtonStyles = css`
   border: none;
   outline: none;
+  background: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const flexCenter = css`
   display: flex;
   align-items: center;
   justify-content: center;

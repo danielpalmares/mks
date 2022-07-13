@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { IParams } from '../../../data/utils/params';
-import { Product } from '../../../domain/models/product.model';
+import { CartProduct, Product } from '../../../domain/models/product.model';
 import { ApplicationState } from '../../../store';
 import { setProductsSaga } from '../../../store/products/actions';
 import { CartNavigation } from '../../components/CartNavigation';
@@ -26,8 +26,9 @@ export function Home() {
   const products = useSelector((state: ApplicationState) => state.products);
   const dispatch = useDispatch();
 
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<CartProduct[]>([]);
   const [checkCart, setCheckCart] = useState<boolean>(true);
+  const [showCartNavigation, setShowCartNavigation] = useState<boolean>(false);
 
   useEffect(() => {
     const params: IParams = {
@@ -48,7 +49,7 @@ export function Home() {
       return setCheckCart(false);
     }
 
-    const cachedProducts: Product[] = JSON.parse(cachedProductsJson);
+    const cachedProducts: CartProduct[] = JSON.parse(cachedProductsJson);
     setCart(cachedProducts);
     setCheckCart(false);
   }, [checkCart]);
@@ -57,33 +58,40 @@ export function Home() {
     const cachedProductsJson = localStorage.getItem('@cart');
 
     if (!cachedProductsJson) {
-      const newCachedProducts: Product[] = [];
-      newCachedProducts.push(product);
+      const newCachedProducts: CartProduct[] = [];
+      newCachedProducts.push({ ...product, quantity: 1 });
 
       localStorage.setItem('@cart', JSON.stringify(newCachedProducts));
       return setCheckCart(true);
     }
 
-    const cachedProducts: Product[] = JSON.parse(cachedProductsJson);
+    const cachedProducts: CartProduct[] = JSON.parse(cachedProductsJson);
     const isProductInCart = cachedProducts.some(
       cartProduct => product.id === cartProduct.id
     );
     if (isProductInCart) return;
 
-    cachedProducts.push(product);
+    cachedProducts.push({ ...product, quantity: 1 });
     localStorage.setItem('@cart', JSON.stringify(cachedProducts));
     return setCheckCart(true);
   };
 
   return (
-    <Template>
-      <CartNavigation />
+    <Template
+      cartCount={cart.length}
+      setShowCartNavigation={setShowCartNavigation}
+    >
+      <CartNavigation
+        cart={cart}
+        setCheckCart={setCheckCart}
+        showCartNavigation={showCartNavigation}
+        setShowCartNavigation={setShowCartNavigation}
+      />
       <Main>
         {products.loading &&
           Array.from({ length: skeletonCount }, (_, i) => {
             return <Skeleton key={i} />;
           })}
-
         {products.data.map(product => {
           return (
             <ProductCard key={product.id}>
