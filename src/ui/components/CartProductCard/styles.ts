@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { baseButtonStyles, flexCenter } from '../../styles/baseCss';
+import styled from 'styled-components';
 import * as variables from '../../styles/variables';
 
 export const CardContainer = styled.div`

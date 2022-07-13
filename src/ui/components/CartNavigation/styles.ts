@@ -32,24 +32,24 @@ export const Navigation = styled.nav<NavigationProps>`
   bottom: 0;
   right: 0;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   width: 50rem;
   min-height: 100vh;
-
   background-color: ${variables.BLUE_PRIMARY};
   z-index: ${variables.NAVIGATION_INDEX};
+
+  transition: transform 0.2s;
+  transform: ${props =>
+    props.isVisible ? 'translateX(0%)' : 'translateX(100%)'};
+
   overflow-y: scroll;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  transition: transform 0.2s;
-  transform: ${props =>
-    props.isVisible ? 'translateX(0%)' : 'translateX(100%)'};
 
   @media screen and (max-width: 530px) {
     width: 45rem;
@@ -57,18 +57,6 @@ export const Navigation = styled.nav<NavigationProps>`
 
   @media screen and (max-width: 500px) {
     width: 30rem;
-  }
-`;
-
-export const ProductsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 2rem;
-  margin: 4rem 4rem 6rem 4rem;
-
-  @media screen and (max-width: 500px) {
-    margin: 2rem 2rem 6rem 2rem;
   }
 `;
 
@@ -99,6 +87,18 @@ export const CloseButton = styled.button`
 
   color: ${variables.WHITE};
   background-color: ${variables.BLACK};
+`;
+
+export const ProductsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 2rem;
+  margin: 4rem 4rem 6rem 4rem;
+
+  @media screen and (max-width: 500px) {
+    margin: 2rem 2rem 6rem 2rem;
+  }
 `;
 
 export const NavBottomContainer = styled.div`
@@ -133,18 +133,12 @@ export const FinishButton = styled.button`
   ${baseButtonStyles};
   ${bigText};
 
-  /* position: absolute; */
-  /* bottom: 0;
-  left: 0;
-  right: 0; */
-
   width: 100%;
   min-height: 10rem;
   background-color: ${variables.BLACK};
 
   @media screen and (max-width: 530px) {
     font-size: 2.2rem;
-
     min-height: 6rem;
   }
 `;

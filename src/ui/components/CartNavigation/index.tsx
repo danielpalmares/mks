@@ -34,6 +34,7 @@ export function CartNavigation({
     const newCachedProducts = cachedProducts.filter(
       cartProduct => productId !== cartProduct.id
     );
+
     localStorage.setItem('@cart', JSON.stringify(newCachedProducts));
     return setCheckCart(true);
   };
@@ -73,7 +74,6 @@ export function CartNavigation({
         <CloseButton onClick={() => setShowCartNavigation(false)}>
           <IoCloseOutline size={20} />
         </CloseButton>
-
         <ProductsContainer>
           {cart.map(product => {
             return (
@@ -94,7 +94,6 @@ export function CartNavigation({
             );
           })}
         </ProductsContainer>
-
         <NavBottomContainer>
           <TotalContainer>
             <span>Total:</span>
