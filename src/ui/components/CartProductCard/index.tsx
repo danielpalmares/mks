@@ -10,10 +10,10 @@ import {
 
 interface Props {
   removeHandler: () => void;
+  addQuantity: () => void;
+  removeQuantity: () => void;
   name: string;
-  description: string;
   quantity: number;
-  setQuantity: (value: number) => void;
   photo: string;
   price: string;
 }
@@ -21,9 +21,9 @@ interface Props {
 export function CartProductCard({
   removeHandler,
   name,
-  description,
   quantity,
-  setQuantity,
+  addQuantity,
+  removeQuantity,
   photo,
   price,
 }: Props) {
@@ -39,20 +39,17 @@ export function CartProductCard({
       />
 
       <ImageNameContainer>
-        <img src={photo} alt={description} />
+        <img src={photo} alt={name} />
         <span>{name}</span>
       </ImageNameContainer>
 
       <QuantityPriceContainer>
         <QuantityContainer>
-          <button
-            onClick={() => setQuantity(quantity - 1 ? quantity - 1 : quantity)}
-          >
-            -
-          </button>
+          <button onClick={() => removeQuantity()}>-</button>
           <span>{quantity}</span>
-          <button onClick={() => setQuantity(quantity + 1)}>+</button>
+          <button onClick={() => addQuantity()}>+</button>
         </QuantityContainer>
+
         <PriceBadge>{toLocalePrice(price)}</PriceBadge>
       </QuantityPriceContainer>
     </CardContainer>

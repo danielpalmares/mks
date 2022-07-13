@@ -1,3 +1,4 @@
+import { baseButtonStyles } from '../../styles/baseCss';
 import styled from 'styled-components';
 import * as variables from '../../styles/variables';
 
@@ -5,13 +6,15 @@ export const Container = styled.div`
   position: fixed;
   inset: 0;
   height: 10rem;
-  background-color: ${variables.BLUE_PRIMARY};
-  padding: 2rem 4rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  z-index: 100;
+
+  background-color: ${variables.BLUE_PRIMARY};
+  padding: 2rem 4rem;
+  z-index: ${variables.HEADER_INDEX};
 
   @media screen and (max-width: 420px) {
     padding: 1rem 2rem;
@@ -30,25 +33,21 @@ export const TitleContainer = styled.div`
     }
 
     h2 {
-      font-size: 1.8rem;
+      font-size: ${variables.FONT_BIG};
       margin-bottom: 0.3rem;
     }
   }
 `;
 
 export const CartButton = styled.button`
-  outline: none;
-  border: none;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
+  ${baseButtonStyles};
   gap: 1rem;
-  background-color: ${variables.WHITE};
-  padding: 1rem 2rem;
-  font-size: 1.8rem;
+  font-size: ${variables.FONT_BIG};
   font-weight: 700;
   color: ${variables.BLACK};
-  cursor: pointer;
+  background-color: ${variables.WHITE};
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 
   &:hover {
     opacity: 0.9;

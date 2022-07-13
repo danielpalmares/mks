@@ -15,5 +15,8 @@ export const BLUR = '4px';
 
 export const BACKDROP_INDEX = '999';
 export const NAVIGATION_INDEX = '1000';
+export const HEADER_INDEX = '100';
 
 export const FONT_SMALL = '1.3rem';
+export const FONT_REGULAR = '1.6rem';
+export const FONT_BIG = '1.8rem';

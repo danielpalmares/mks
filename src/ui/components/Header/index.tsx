@@ -1,5 +1,4 @@
 import { IoCartOutline } from 'react-icons/io5';
-import { CartProduct } from '../../../domain/models/product.model';
 import {
   Container,
   Title,
