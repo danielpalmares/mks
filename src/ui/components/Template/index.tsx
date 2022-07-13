@@ -1,9 +1,10 @@
+import { ReactNode } from 'react';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { Wrapper } from './styles';
 
 interface Props {
-  children: JSX.Element;
+  children: ReactNode[];
 }
 
 export function Template({ children }: Props) {

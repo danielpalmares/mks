@@ -7,11 +7,11 @@ export const Main = styled.main`
   flex-wrap: wrap;
   gap: 2rem;
 
-  padding: 2rem;
-  margin: 15rem auto;
+  padding: 15rem 2rem;
+  margin: 0 auto;
 
   @media screen and (max-width: 500px) {
-    margin: 10rem auto;
+    padding: 10rem 2rem;
   }
 `;
 
@@ -21,7 +21,7 @@ export const ProductCard = styled.div`
   overflow: hidden;
   position: relative;
 
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: ${variables.SHADOW_LIGHT};
   background-color: ${variables.WHITE};
   border-radius: 1rem;
 `;
