@@ -65,11 +65,10 @@ export const ProductsContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   gap: 2rem;
-  margin: 4rem;
-  /* height: 60vh; */
+  margin: 4rem 4rem 6rem 4rem;
 
   @media screen and (max-width: 500px) {
-    margin: 2rem;
+    margin: 2rem 2rem 6rem 2rem;
   }
 `;
 
@@ -100,6 +99,34 @@ export const CloseButton = styled.button`
 
   color: ${variables.WHITE};
   background-color: ${variables.BLACK};
+`;
+
+export const NavBottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+export const TotalContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4rem;
+
+  span {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: ${variables.WHITE};
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 0 2rem;
+
+    span {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: ${variables.WHITE};
+    }
+  }
 `;
 
 export const FinishButton = styled.button`

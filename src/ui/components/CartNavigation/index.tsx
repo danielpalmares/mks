@@ -1,13 +1,16 @@
 import { IoCloseOutline } from 'react-icons/io5';
 import { CartProduct } from '../../../domain/models/product.model';
+import { toLocalePrice } from '../../utils/functions';
 import { CartProductCard } from '../CartProductCard';
 import {
   Backdrop,
   CloseButton,
   FinishButton,
+  NavBottomContainer,
   Navigation,
   NavigationHeading,
   ProductsContainer,
+  TotalContainer,
 } from './styles';
 
 interface Props {
@@ -54,6 +57,13 @@ export function CartNavigation({
     return setCheckCart(true);
   };
 
+  const calcTotal = function () {
+    const total = cart.reduce((acc, product) => {
+      return acc + parseInt(product.price) * product.quantity;
+    }, 0);
+    return total.toString();
+  };
+
   return (
     <Backdrop isVisible={showCartNavigation}>
       <Navigation isVisible={showCartNavigation}>
@@ -85,9 +95,15 @@ export function CartNavigation({
           })}
         </ProductsContainer>
 
-        <FinishButton onClick={() => setShowCartNavigation(false)}>
-          Finalizar compra
-        </FinishButton>
+        <NavBottomContainer>
+          <TotalContainer>
+            <span>Total:</span>
+            <span>{toLocalePrice(calcTotal())}</span>
+          </TotalContainer>
+          <FinishButton onClick={() => setShowCartNavigation(false)}>
+            Finalizar compra
+          </FinishButton>
+        </NavBottomContainer>
       </Navigation>
     </Backdrop>
   );
