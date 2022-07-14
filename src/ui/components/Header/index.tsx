@@ -19,7 +19,10 @@ export function Header({ cartCount, setShowCartNavigation }: Props) {
         <Title>MKS</Title>
         <SubTitle>Sistemas</SubTitle>
       </TitleContainer>
-      <CartButton onClick={() => setShowCartNavigation(true)}>
+      <CartButton
+        onClick={() => setShowCartNavigation(true)}
+        data-testid="open-cart-button"
+      >
         <IoCartOutline size={20} /> {cartCount}
       </CartButton>
     </Container>

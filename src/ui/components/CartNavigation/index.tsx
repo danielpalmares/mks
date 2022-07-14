@@ -67,11 +67,14 @@ export function CartNavigation({
 
   return (
     <Backdrop isVisible={showCartNavigation}>
-      <Navigation isVisible={showCartNavigation}>
+      <Navigation isVisible={showCartNavigation} data-testid="cart-navigation">
         <NavigationHeading>
           Carrinho <br /> de compras
         </NavigationHeading>
-        <CloseButton onClick={() => setShowCartNavigation(false)}>
+        <CloseButton
+          onClick={() => setShowCartNavigation(false)}
+          data-testid="close-cart-button"
+        >
           <IoCloseOutline size={20} />
         </CloseButton>
         <ProductsContainer>
@@ -90,6 +93,7 @@ export function CartNavigation({
                 price={product.price}
                 quantity={product.quantity}
                 photo={product.photo}
+                data-testid="cart-product"
               />
             );
           })}

@@ -36,6 +36,7 @@ export function CartProductCard({
         padding={0.5}
         top="-1rem"
         right="-1rem"
+        data-testid="remove-cart-product"
       />
 
       <ImageNameContainer>

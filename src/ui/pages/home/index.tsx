@@ -94,7 +94,7 @@ export function Home() {
           })}
         {products.data.map(product => {
           return (
-            <ProductCard key={product.id}>
+            <ProductCard key={product.id} data-testid="product-card">
               <ImageContainer>
                 <img src={product.photo} alt={product.name} />
               </ImageContainer>
@@ -108,7 +108,10 @@ export function Home() {
                 <Description>{product.description}</Description>
               </InformationContainer>
 
-              <BuyButton onClick={() => sendToCartHandler(product)}>
+              <BuyButton
+                onClick={() => sendToCartHandler(product)}
+                data-testid="buy-button"
+              >
                 <IoBagHandleOutline size={16} /> Comprar
               </BuyButton>
             </ProductCard>

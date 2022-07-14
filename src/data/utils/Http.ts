@@ -12,7 +12,8 @@ class Http {
         'Content-Type': 'application/json',
         'Key-Inflection': 'camel',
       },
-      baseURL: import.meta.env.VITE_BASE_URL,
+      baseURL: 'https://mks-frontend-challenge-api.herokuapp.com/api/v1',
+      // baseURL: import.meta.env.VITE_BASE_URL *** issues with jest environment
     });
 
     return this.instance;
